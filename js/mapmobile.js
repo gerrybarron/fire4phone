@@ -34,7 +34,7 @@ function startRefresh(){
   addMarker();
 }  
 
-setInterval(function(){startRefresh()}, 10000);
+setInterval(function(){startRefresh()}, 30000);
 
 function getDeviceStatus(){
     //var ndevice = arrayDevice.length;
@@ -230,10 +230,7 @@ function addMarker(location) {
           vicon = "img/alert-small-size.png";
           directionsDisplay.setMap(null);
       }
-      else if(aryHum[i]<=60 && aryTemp[i]>=30 && aryGas[i]<=50){
-          vicon = "img/alert-small-size.png";
-          directionsDisplay.setMap(null);
-      }
+      
       else if(aryHum[i]<=60 && aryTemp[i]>=30 && aryGas[i]<=50){
           vicon = "img/danger-small-size.png";
    
@@ -242,7 +239,8 @@ function addMarker(location) {
             //etDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            $("#modal2").trigger("click");
+            //$("#modal2").trigger("click");
+            $('#modal2').modal('open');
       }
       else if(aryHum[i]>=60 && aryTemp[i]<=30 && aryGas[i]<=50){
           vicon = "img/danger-small-size.png";
@@ -252,7 +250,7 @@ function addMarker(location) {
             //setDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            $("#modal2").trigger("click");
+            $('#modal2').modal('open');
       }
       else if(aryHum[i]<=60 && aryTemp[i]>=30 && aryGas[i]>=50){
           vicon = "img/danger-small-size.png";
@@ -262,7 +260,7 @@ function addMarker(location) {
             //setDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            $("#modal2").trigger("click");
+            $('#modal2').modal('open');
       }
 
     var marker = new google.maps.Marker({
