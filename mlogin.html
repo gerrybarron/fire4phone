@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <!--CSS-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css" media="screen,projection" />
+  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!--h3 class="center teal-text"></h3-->
+    <br>
+    <img src="img/FIRE2.png" class="responsive-img">
+    <br>
+    <br>
+    <div class="divider"></div>
+    <br>
+    <h6 class="center red-text" id="errmsg"></h6>
+    <br>
+    <p class="center red-text"></p>
+    <div class="container">
+      <ul class="collapsible popout" data-collapsible="accordion">
+          <li class="">
+            <div class="collapsible-header center active red darken-3 white-text flow-text">Find. Inform. Response. Enhance.</div>
+            <div class="collapsible-body">
+            <br>
+            <div class="container">
+              <form action="mobile.html" method="post" name="Form" onsubmit="return validateForm()">
+                <div class="input-field">
+                  <i class="fa fa-user prefix" aria-hidden="true"></i>
+                  <input type="text" id="user" name="username" class="hoverable">
+                  <label for="user">Username</label>  
+                </div>
+                <div class="input-field">
+                  <i class="fa fa-key prefix" aria-hidden="true"></i>
+                  <input type="password" id="pass" name="password" class="hoverable">
+                  <label for="pass">Password</label>  
+                </div>
+                <button type="submit" name="login" class="block btn red darken-3">Login</button>
+                <br>
+                <br>
+              </form>
+            </div>
+            </div>
+          </li>
+        </ul>
+    </div>  
+  </div>
+  
+  <!--JS-->
+  <script type="text/javascript">
+    function validateForm()
+    {
+    var a=document.forms["Form"]["username"].value;
+    var b=document.forms["Form"]["password"].value;
+    if (a==null || a=="",b==null || b=="")
+      {
+      //alert("Please Fill All Required Field");
+      document.getElementById("errmsg").innerHTML = "Enter Username and Password";
+      return false;
+      }
+    }
+    
+  </script>
+  <script type="" src="js/init.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+</body>
+</html>

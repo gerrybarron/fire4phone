@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <!--CSS-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/materialize.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css" media="screen,projection" />
+  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+  <style type="text/css">
+    #map{
+          height: 100%;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+    .hideme{
+      display:none;
+    }
+  </style>
+
+</head>
+<body>
+<input type="hidden" id="dStart">
+<input type="hidden" id="dEnd">
+
+<div id="map"></div>
+  
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large red darken-4">
+      <i class="fa fa-bars fa-3x"></i>
+        <!--<img class="responsive-img" src="img/F.png">-->
+    </a>
+    <ul class="">
+      <!--li class="waves-effect waves-red"><a href="#!"><i class="fa fa-home fa-2x"></i></a></li-->
+      <li class="waves-effect waves-light"><a href="#modal1"><i class="fa fa-area-chart fa-2x"></i></a></li>
+      <!--li class="waves-effect waves-light"><a href="#!"><i class="fa fa-user fa-2x"></i></a></li-->
+      <!--li class="waves-effect waves-light"><a href="#!"><i class="fa fa-wrench fa-2x"></i></a></li-->
+    </ul>
+  </div>
+
+  <!-- Modal Trigger -->
+  <!--a class="waves-effect waves-light btn" href="#modal1">Modal</a-->
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="center">Status</h4>
+      <div class="divider"></div>
+      <div id="humidity" style="width:200px;height:200px; margin-left: auto;margin-right: auto;"></div>
+      <div id="temperature" style="width:200px; height:200px; margin-left: auto;margin-right: auto;"></div>
+      <div id="gas" style="width:200px; height:200px; margin-left: auto;margin-right: auto;"></div>
+    </div>
+    <div class="modal-footer">
+      <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
+    </div>
+  </div>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="center red-text">Status: DANGER!</h4>
+      <div class="divider"></div>
+      <p>Fire threat detected!</p>
+    </div>
+    <div class="modal-footer">
+      <!--a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a-->
+    </div>
+  </div>
+  <!--JS-->
+  
+  <script type="text/javascript" src="js/init.js"></script>
+  <script src="js/mapmobile.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
+  <script src="js/raphael-2.1.4.min.js"></script>
+<script src="js/justgage.js"></script>
+
+<script>
+var arrayDevice=[], aryHum=[], aryTemp=[], aryGas=[], aryLat=[], aryLong=[], markers=[],aryLoc=[];
+
+//  function reffff(){
+  getDeviceStatus();
+  //setGuage();
+//}
+//setInterval(function(){reffff()}, 10000);
+
+function getDeviceStatus(){
+    //var ndevice = arrayDevice.length;
+    //for(var i=0; i<=arrayDevice.length-1; i++){
+      $.ajax({
+        type: "GET",
+        url: "https://dweet.io:443/get/latest/dweet/for/gerrybarrontest1",
+        async: false,
+        success: function(myData){
+          //console.log(myData);
+          aryHum.push(myData.with[0].content.Humidity);
+          aryTemp.push(myData.with[0].content.Temperature);
+          aryGas.push(myData.with[0].content.Gas);
+          aryLat.push(myData.with[0].content.Latitude);
+          aryLong.push(myData.with[0].content.Longitude);
+        }
+      }); //end of ajax function  
+    //}//end of for loop
+}
+
+  var g = new JustGage({
+    id: "humidity",
+    value: aryHum,
+    min: 0,
+    max: 200,
+    title: "Humidity"
+  });
+  var g2 = new JustGage({
+    id: "temperature",
+    value: aryTemp,
+    min: 0,
+    max: 100,
+    title: "Temperature"
+  });
+  var g3 = new JustGage({
+    id: "gas",
+    value: aryGas,
+    min: 0,
+    max: 1000,
+    title: "Gas"
+  });
+
+  
+</script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAOSrVBmfLfJNg2hdGZ14PCaMSRt5jAqn4&callback=initMap" async defer></script>
+</body>
+</html>
