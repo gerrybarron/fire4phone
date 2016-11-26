@@ -51,7 +51,7 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
 
-<icon src="img/F-small.png" />
+<icon src="img/F.png" />
 
   <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
