@@ -242,7 +242,7 @@ function addMarker(location) {
             //etDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            //$("#trigmode").trigger("click");
+            $("#modal2").trigger("click");
       }
       else if(aryHum[i]>=60 && aryTemp[i]<=30 && aryGas[i]<=50){
           vicon = "img/danger-small-size.png";
@@ -252,7 +252,7 @@ function addMarker(location) {
             //setDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            //$("#trigmode").trigger("click");
+            $("#modal2").trigger("click");
       }
       else if(aryHum[i]<=60 && aryTemp[i]>=30 && aryGas[i]>=50){
           vicon = "img/danger-small-size.png";
@@ -262,7 +262,7 @@ function addMarker(location) {
             //setDirection();
             //document.getElementById("mHead").innerHTML = "Fire threat in " + aryLoc[i];
             //directionsDisplay.setPanel(document.getElementById('panel'));
-            //$("#trigmode").trigger("click");
+            $("#modal2").trigger("click");
       }
 
     var marker = new google.maps.Marker({
